@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { DateService } from '../date.service';
+import {DateResponse} from "../date.model";
 
 @Component({
   selector: 'app-date-result',
@@ -10,21 +11,21 @@ import { DateService } from '../date.service';
 })
 export class DateResultComponent implements OnInit {
 
-  dateResult: JSON;
+  dateResult: DateResponse;
 
   constructor(private dateService: DateService) { }
 
   ngOnInit() {
-    console.log(this.dateResult);
-    this.dateService.currentDate.subscribe(dateResult => this.dateResult = dateResult);
+    this.dateService.subscribeDate()
+      .subscribe(dateResult => this.dateResult = dateResult);
   }
 
   changeDateResult() {
-    console.log('change result 1:' + JSON.stringify(this.dateResult));
-    if (this.dateResult == null || Object.keys(this.dateResult).length === 0) {
+    console.log('change result 1:' + this.dateResult);
+    if (this.dateResult == null) {
       return false;
     }
-    console.log('change result 2:' + JSON.stringify(this.dateResult));
+    console.log('change result 2:' + this.dateResult);
     return true;
   }
 

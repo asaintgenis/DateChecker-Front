@@ -1,9 +1,9 @@
 <div class="dateForm">
   <form (ngSubmit)="parseDate()" #dateForm="ngForm">
     <label for="name">Pattern</label>
-    <input type="text" class="form-control" [(ngModel)]="dateToParse.pattern" name="pattern" required>
+    <input type="text" class="form-control" [(ngModel)]="pattern" name="pattern" required>
     <label for="name">Date To Parse</label>
-    <input type="text" class="form-control" [(ngModel)]="dateToParse.dateToParse" name="dateToParse" required>
+    <input type="text" class="form-control" [(ngModel)]="dateToParse" name="dateToParse" required>
 
     <button type="submit" class="btn btn-success" [disabled]="!dateForm.form.valid">Save</button>
   </form>
