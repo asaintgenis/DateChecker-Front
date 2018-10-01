@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Observable, Subject} from "rxjs";
+import {Observable, Subject} from 'rxjs';
 import {HttpClient} from "@angular/common/http";
 import {DateRequest, DateResponse} from "./date.model";
 import {map} from "rxjs/operators";
@@ -8,7 +8,6 @@ import {map} from "rxjs/operators";
 export class DateService {
 
   private dataSource = new Subject<DateResponse>();
-  private data = this.dataSource.asObservable();
 
 
   constructor(private http: HttpClient) {
@@ -23,9 +22,8 @@ export class DateService {
       ).subscribe(dateResponse => this.dataSource.next(dateResponse))
   }
 
-  subscribeDate(): Observable<DateResponse> {
-    return this.data;
+  getDate(): Observable<DateResponse> {
+    return this.dataSource.asObservable();
   }
-
 
 }

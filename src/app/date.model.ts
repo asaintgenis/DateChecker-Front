@@ -1,6 +1,5 @@
 export class DateResponse {
   public static fromJson(json: Object): DateResponse {
-    console.log(json);
     return new DateResponse(
       json['year'],
       json['month'],

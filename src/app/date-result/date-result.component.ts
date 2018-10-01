@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { DateService } from '../date.service';
 import {DateResponse} from "../date.model";
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-date-result',
@@ -9,24 +10,25 @@ import {DateResponse} from "../date.model";
   encapsulation: ViewEncapsulation.None,
   providers: [DateService]
 })
-export class DateResultComponent implements OnInit {
+export class DateResultComponent implements OnDestroy {
 
   dateResult: DateResponse;
+  dateSubscription: Subscription;
 
-  constructor(private dateService: DateService) { }
-
-  ngOnInit() {
-    this.dateService.subscribeDate()
-      .subscribe(dateResult => this.dateResult = dateResult);
+  constructor(private dateService: DateService) {
+    this.dateSubscription = this.dateService.getDate().subscribe(dateResponse => this.dateResult = dateResponse);
   }
 
   changeDateResult() {
-    console.log('change result 1:' + this.dateResult);
-    if (this.dateResult == null) {
-      return false;
+    console.log('change result:' + this.dateResult);
+    if (this.dateResult) {
+      return true;
     }
-    console.log('change result 2:' + this.dateResult);
-    return true;
+    return false;
+  }
+
+  ngOnDestroy() {
+    this.dateSubscription.unsubscribe()
   }
 
 }
