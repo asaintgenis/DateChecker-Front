@@ -1,6 +1,12 @@
 {
   "/api": {
-    "target": "https://date-checker.herokuapp.com",
-    "secure": false
+    "target":  {
+      "host": "date-checker.herokuapp.com",
+      "protocol": "https:",
+      "port": 443
+    },
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "info"
   }
 }
