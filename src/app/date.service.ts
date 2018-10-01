@@ -19,7 +19,10 @@ export class DateService {
         map(
           (json: Object) => DateResponse.fromJson(json)
         )
-      ).subscribe(dateResponse => this.dataSource.next(dateResponse))
+      ).subscribe(dateResponse => {
+        console.log(dateResponse);
+        this.dataSource.next(dateResponse);
+      })
   }
 
   getDate(): Observable<DateResponse> {

@@ -3,13 +3,13 @@ export class DateResponse {
     return new DateResponse(
       json['year'],
       json['month'],
-      json['day']
+      json['dayOfMonth']
     );
   }
 
   constructor(public year: string,
               public month: string,
-              public day: string) {
+              public dayOfMonth: string) {
   }
 }
 

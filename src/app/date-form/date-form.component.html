@@ -8,4 +8,4 @@
     <button type="submit" class="btn btn-success" [disabled]="!dateForm.form.valid">Save</button>
   </form>
 </div>
-<app-date-result></app-date-result>
+<app-date-result *ngIf="parsedDate" [parsedDate]="parsedDate"></app-date-result>
