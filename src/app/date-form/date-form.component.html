@@ -1,5 +1,10 @@
 <div class="dateForm">
   <form (ngSubmit)="parseDate()" #dateForm="ngForm">
+    <div class="radio-buttons">
+      <input name="dateType" type="radio" [value]="DateType.LOCAL_DATE" [(ngModel)]="type" > LocalDate
+      <input name="dateType" type="radio" [value]="DateType.LOCAL_DATETIME" [(ngModel)]="type" > LocalDateTime
+      <input name="dateType" type="radio" [value]="DateType.ZONED_DATETIME" [(ngModel)]="type" > ZonedDateTime
+    </div>
     <label for="name">Pattern</label>
     <input type="text" class="form-control" [(ngModel)]="pattern" name="pattern" required>
     <label for="name">Date To Parse</label>

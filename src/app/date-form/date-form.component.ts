@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {DateService} from '../date.service';
-import {DateRequest, DateResponse} from '../date.model';
+import {DateRequest, DateResponse, DateType} from '../date.model';
 
 @Component({
   selector: 'app-date-form',
@@ -15,6 +15,9 @@ export class DateFormComponent implements OnInit {
   pattern: string = "";
   parsedDate: DateResponse;
 
+  DateType = DateType;
+  type: DateType;
+
   constructor(private dateService: DateService) { }
 
   ngOnInit() {
@@ -24,6 +27,6 @@ export class DateFormComponent implements OnInit {
   }
 
   parseDate() {
-    this.dateService.callDate(new DateRequest(this.dateToParse, this.pattern));
+    this.dateService.callDate(new DateRequest(this.dateToParse, this.pattern, this.type));
   }
 }
